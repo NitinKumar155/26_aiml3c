@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Create your account</title>
+</head>
+<body align="center">
+	<h1>Create your account</h1>
+	<p>Enter your details to register.</p>
+
+	<form id="registrationForm" novalidate>
+		<table align="center" cellpadding="6" cellspacing="0" border="0">
+			<tr>
+				<td align="right"><label for="name">Name:</label></td>
+				<td><input id="name" name="name" type="text" size="35" autocomplete="name"></td>
+			</tr>
+			<tr><td></td><td><p class="error" id="nameError"></p></td></tr>
+			<tr>
+				<td align="right"><label for="email">Email:</label></td>
+				<td><input id="email" name="email" type="email" size="35" autocomplete="email"></td>
+			</tr>
+			<tr><td></td><td><p class="error" id="emailError"></p></td></tr>
+			<tr>
+				<td align="right"><label for="password">Password:</label></td>
+				<td><input id="password" name="password" type="password" size="35" autocomplete="new-password"></td>
+			</tr>
+			<tr><td></td><td><p class="error" id="passwordError"></p></td></tr>
+			<tr>
+				<td align="right"><label for="confirmPassword">Re-enter password:</label></td>
+				<td><input id="confirmPassword" name="confirmPassword" type="password" size="35" autocomplete="new-password"></td>
+			</tr>
+			<tr><td></td><td><p class="error" id="confirmPasswordError"></p></td></tr>
+			<tr>
+				<td align="right"><label for="mobile">Mobile number:</label></td>
+				<td><input id="mobile" name="mobile" type="tel" inputmode="numeric" size="35" autocomplete="tel"></td>
+			</tr>
+			<tr><td></td><td><p class="error" id="mobileError"></p></td></tr>
+			<tr>
+				<td></td>
+				<td><button type="submit">Submit</button></td>
+			</tr>
+			<tr><td></td><td><p class="success" id="successMessage" role="status"></p></td></tr>
+		</table>
+		</form>
+
+	<script>
+		const form = document.getElementById("registrationForm");
+		const fields = ["name", "email", "password", "confirmPassword", "mobile"];
+
+		function showError(field, message) {
+			const input = document.getElementById(field);
+			input.classList.toggle("invalid", Boolean(message));
+			input.setAttribute("aria-invalid", Boolean(message));
+			document.getElementById(field + "Error").textContent = message;
+		}
+
+		form.addEventListener("submit", function (event) {
+			event.preventDefault();
+			const values = Object.fromEntries(new FormData(form));
+			let isValid = true;
+
+			fields.forEach((field) => showError(field, ""));
+			document.getElementById("successMessage").textContent = "";
+
+			if (!values.name.trim()) { showError("name", "Please enter your name."); isValid = false; }
+			if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) { showError("email", "Enter a valid email address."); isValid = false; }
+			if (!/^(?=.*[A-Za-z])(?=.*\d).{8,}$/.test(values.password)) { showError("password", "Use at least 8 characters with a letter and a number."); isValid = false; }
+			if (values.confirmPassword !== values.password || !values.confirmPassword) { showError("confirmPassword", "Passwords must match."); isValid = false; }
+			if (!/^\d{10}$/.test(values.mobile.replace(/\D/g, ""))) { showError("mobile", "Enter a valid 10-digit mobile number."); isValid = false; }
+
+			if (isValid) {
+				document.getElementById("successMessage").textContent = "Registration details submitted successfully.";
+				form.reset();
+			}
+		});
+	</script>
+</body>
+</html>
