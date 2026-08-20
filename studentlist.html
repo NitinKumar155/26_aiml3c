@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Object</title>
+</head>
+
+<body>
+
+<script>
+
+    // Object using new Object()
+
+    let student1 = new Object();
+
+    student1.name = "Nitin Kumar";
+    student1.id = "3212";
+    student1.city = "Ghaziabad";
+
+    student1.learning = function () {
+        console.log("Learning tech");
+        console.log(student1.name);
+    };
+
+    student1.learning();
+
+
+    // Object using Object Literal
+
+    let student = {
+        name: "Nitin Kumar",
+        id: "2503215300130",
+        city: "Ghaziabad",
+
+        learning: function () {
+            console.log("Tech subject");
+        }
+    };
+
+
+    // Adding a new property
+
+    student.pincode = 201002;
+
+
+    // Adding a new method
+
+    student.gym = function () {
+        student.subject = ["Web", "DSA"];
+    };
+
+
+    student.learning();
+
+    student.gym();
+
+
+    // Display complete object
+
+    console.log(student);
+
+    // Display subject
+
+    console.log(student.subject);
+
+</script>
+
+</body>
+</html>
