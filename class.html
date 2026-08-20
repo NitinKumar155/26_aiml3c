@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+function student(id, name, age,city){
+    this.id = id;
+    this.name = name;
+    this.age = age;
+    this.city = city;
+}
+let student1 = new student(1, "Nitin", 22, "GHAZIABAD");
+let student2 = new student(2, "Rohit", 23, "DELHI");
+console.log(student1.id, student1.name, student1.age, student1.city);
+console.log(student2.id, student2.name, student2.age, student2.city);
+    </script>
+</body>
+</html>
