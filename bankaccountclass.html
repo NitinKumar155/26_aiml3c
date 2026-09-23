@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Account</title>
+</head>
+<body>
+    <script>
+        class BankAccount {
+            static bankName = "Chor Khata Bank";
+            constructor(accountNumber, accountHolder, balance) {
+                this.accountNumber = accountNumber;
+                this.accountHolder = accountHolder;
+                this.balance = balance;
+            }
+            displayInfo() {
+                console.log("Account Holder: ", this.accountHolder);
+                console.log("Account Number: ", this.accountNumber);
+                console.log("Balance: ", this.balance);
+            }
+            deposit(amount) {
+                this.balance += amount;
+                console.log(`Deposited ${amount}. New Balance: ${this.balance}`);
+            }
+            withdraw(amount) {
+                if (amount <= this.balance) {
+                    this.balance -= amount;
+                    console.log(`Withdrew ${amount}. New Balance: ${this.balance}`);
+                } else {
+                    console.log("Insufficient funds");
+                }
+            }
+        }
+        let account1 = new BankAccount("2051000100477467", "Nitin Kumar", 10000000000);
+        account1.displayInfo();
+        account1.deposit(500);
+        account1.withdraw(200);
+        account1.withdraw(2000);
+        let account2 = new BankAccount("2051000100477468", "mukeem Khokar", 5000);
+        account2.displayInfo();
+        account2.deposit(1000);
+        account2.withdraw(2000);
+        account2.withdraw(1000);
+        let account3 = new BankAccount("2051000100477469", "manan sharma", 500000);
+        account3.displayInfo();
+        account3.deposit(500);
+        account3.withdraw(1000);
+        account3.withdraw(500);
+    </script>
+</body>
+</html>
