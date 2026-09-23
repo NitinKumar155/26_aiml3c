@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>employee manager pay roll system</title>
+</head>
+<body>
+    <script>
+        class Employee {
+            constructor(name, position, salary) {
+                this.name = name;
+                this.position = position;
+                this.salary = salary;
+            }
+            displayInfo() {
+                console.log("Employee Name: ", this.name);
+                console.log("Position: ", this.position);
+                console.log("Salary: ", this.salary);
+            }
+            giveRaise(amount) {
+                this.salary += amount;
+                console.log(`Raised salary by ${amount}. New Salary: ${this.salary}`);
+            }
+        }
+
+        class Manager extends Employee {
+            constructor(name, position, salary, department) {
+                super(name, position, salary);
+                this.department = department;
+            }
+            displayInfo() {
+                super.displayInfo();
+                console.log("Department: ", this.department);
+            }
+        }
+
+        let emp1 = new Employee("Nitin kumar", "Hacker", 6000000);
+        emp1.displayInfo();
+        emp1.giveRaise(5000);
+
+        let mgr1 = new Manager("mukeem Khokar", "machine learning engineer", 80000, "AI Department");
+        mgr1.displayInfo();
+        mgr1.giveRaise(10000);
+    </script>
+    
+</body>
+</html>
